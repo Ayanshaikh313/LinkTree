@@ -7,62 +7,62 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const Generate = () => {
-  const router = useRouter();
-  const toTree = () => {
-    router.push(`http://localhost:3000/${text}`);
-  }
-  const [text, settext] = useState("");
-  const searchParams = useSearchParams();
-  const [Links, setLinks] = useState([{ link: "", linktext: "" }]);
-  const [handle, sethandle] = useState(searchParams.get('handle'));
-  const [pic, setpic] = useState("");
-  const [desc, setdesc] = useState("");
+  // const router = useRouter();
+  // const toTree = () => {
+  //   router.push(`http://localhost:3000/${text}`);
+  // }
+  // const [text, settext] = useState("");
+  // const searchParams = useSearchParams();
+  // const [Links, setLinks] = useState([{ link: "", linktext: "" }]);
+  // const [handle, sethandle] = useState(searchParams.get('handle'));
+  // const [pic, setpic] = useState("");
+  // const [desc, setdesc] = useState("");
 
-  const handleChange = (index, link, linktext) => {
-    setLinks((initialLinks) => {
-      return initialLinks.map((item, i) => {
-        if (i === index) {
-          return { link, linktext };
-        } else {
-          return item;
-        }
-      });
-    });
-  }
+  // const handleChange = (index, link, linktext) => {
+  //   setLinks((initialLinks) => {
+  //     return initialLinks.map((item, i) => {
+  //       if (i === index) {
+  //         return { link, linktext };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //   });
+  // }
 
-  const addLink = () => {
-    setLinks(Links.concat([{ link: "", linktext: "" }]));
-  }
+  // const addLink = () => {
+  //   setLinks(Links.concat([{ link: "", linktext: "" }]));
+  // }
 
-  const submitLinks = async () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+  // const submitLinks = async () => {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      "links": Links,
-      "handle": handle,
-      "pic": pic,
-      "desc": desc
-    });
+  //   const raw = JSON.stringify({
+  //     "links": Links,
+  //     "handle": handle,
+  //     "pic": pic,
+  //     "desc": desc
+  //   });
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-    };
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: "follow"
+  //   };
 
-    const r = await fetch("http://localhost:3000/api/add", requestOptions);
-    const result = await r.json();
-    if (result.success) {
-      toast.success(result.message);
-      setLinks([]);
-      setpic("");
-      sethandle("");
-    } else {
-      toast.error(result.message);
-    }
-  }
+  //   const r = await fetch("http://localhost:3000/api/add", requestOptions);
+  //   const result = await r.json();
+  //   if (result.success) {
+  //     toast.success(result.message);
+  //     setLinks([]);
+  //     setpic("");
+  //     sethandle("");
+  //   } else {
+  //     toast.error(result.message);
+  //   }
+  // }
 
   return (
     <div className='bg-blue-100 min-h-screen grid grid-cols-1 md:grid-cols-2'>
